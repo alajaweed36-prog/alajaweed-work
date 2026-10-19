@@ -112,13 +112,13 @@ function App() {
   const addTask = async (e) => {
     e.preventDefault()
     const { error } = await supabase.from('tasks').insert([
-      { title: taskTitle, status: 'قيد التنفيذ', assignee: assignee }
+      { title: taskTitle, status: 'قيد التنفيذ', assigned_to: assigned_to }
     ])
     if (error) {
       alert('خطأ في إضافة المهمة: ' + error.message)
     } else {
       setTaskTitle('')
-      setAssignee('')
+      setAssignedto('')
       fetchTasks()
     }
   }
