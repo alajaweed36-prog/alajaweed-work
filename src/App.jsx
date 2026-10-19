@@ -15,7 +15,7 @@ function App() {
   const [price, setPrice] = useState('')
   
   const [taskTitle, setTaskTitle] = useState('')
-  const [assigne_to, setAssignee] = useState('')
+  const [assigned_to, setAssignedTo] = useState('')
 
   const [selectedProduct, setSelectedProduct] = useState('')
   const [transQty, setTransQty] = useState('')
