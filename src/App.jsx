@@ -205,7 +205,7 @@ function App() {
             <h2 style={{ color: '#2b6cb0' }}>توزيع المهام (نظافة، صيانة، أوقات عمل)</h2>
             <form onSubmit={addTask} style={{ display: 'flex', gap: '10px', marginBottom: '15px', flexWrap: 'wrap' }}>
               <input type="text" placeholder="عنوان المهمة" value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} style={{ padding: '10px', flex: '2', borderRadius: '5px', border: '1px solid #ccc' }} required />
-              <input type="text" placeholder="المسؤول عن التنفيذ" value={assignee} onChange={(e) => setAssignee(e.target.value)} style={{ padding: '10px', flex: '1', borderRadius: '5px', border: '1px solid #ccc' }} required />
+              <input type="text" placeholder="المسؤول عن التنفيذ" value={assigned_to} onChange={(e) => setAssigned_to(e.target.value)} style={{ padding: '10px', flex: '1', borderRadius: '5px', border: '1px solid #ccc' }} required />
               <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#3182ce', color: 'white', border: 'none', borderRadius: '5px', fontWeight: 'bold', cursor: 'pointer' }}>إضافة مهمة</button>
             </form>
 
@@ -222,7 +222,7 @@ function App() {
                   {tasks.map((t, index) => (
                     <tr key={index}>
                       <td style={{ padding: '8px', border: '1px solid #cbd5e0' }}>{t.title}</td>
-                      <td style={{ padding: '8px', border: '1px solid #cbd5e0' }}>{t.assignee}</td>
+                      <td style={{ padding: '8px', border: '1px solid #cbd5e0' }}>{t.assigned_to}</td>
                       <td style={{ padding: '8px', border: '1px solid #cbd5e0' }}>{t.status}</td>
                     </tr>
                   ))}
