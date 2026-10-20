@@ -118,7 +118,20 @@ function App() {
       alert('خطأ في إضافة المهمة: ' + error.message)
     } else {
       setTaskTitle('')
-      setAssignedto('')
+      setAssignedTo('')
+      fetchTasks()
+    }
+  }
+
+  const updateTaskStatus = async (id, newStatus) => {
+    const { error } = await supabase
+      .from('tasks')
+      .update({ status: newStatus })
+      .eq('id', id)
+
+    if (error) {
+      alert('خطأ في تحديث حالة المهمة: ' + error.message)
+    } else {
       fetchTasks()
     }
   }
@@ -216,6 +229,7 @@ function App() {
                     <th style={{ padding: '8px', border: '1px solid #cbd5e0' }}>المهمة</th>
                     <th style={{ padding: '8px', border: '1px solid #cbd5e0' }}>المسؤول</th>
                     <th style={{ padding: '8px', border: '1px solid #cbd5e0' }}>الحالة</th>
+                    <th style={{ padding: '8px', border: '1px solid #cbd5e0' }}>الإجراء</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -223,7 +237,15 @@ function App() {
                     <tr key={index}>
                       <td style={{ padding: '8px', border: '1px solid #cbd5e0' }}>{t.title}</td>
                       <td style={{ padding: '8px', border: '1px solid #cbd5e0' }}>{t.assigned_to}</td>
-                      <td style={{ padding: '8px', border: '1px solid #cbd5e0' }}>{t.status}</td>
+                      <td style={{ padding: '8px', border: '1px solid #cbd5e0', color: t.status === 'تم التنفيذ' ? '#276749' : '#d69e2e', fontWeight: 'bold' }}>{t.status}</td>
+                      <td style={{ padding: '8px', border: '1px solid #cbd5e0' }}>
+                        <button 
+                          onClick={() => updateTaskStatus(t.id, 'تم التنفيذ')}
+                          style={{ background: '#28a745', color: '#fff', padding: '5px 10px', borderRadius: '4px', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}
+                        >
+                          إنجاز
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
